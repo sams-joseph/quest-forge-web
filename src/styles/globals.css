@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #1e193b;
+  color: white;
+}
+
+.dark-editor {
+  --baseBg: #1e193b !important;
+  --baseBgHover: #302b4f !important;
+  --baseBgActive: #302b4f !important;
+  --baseText: white !important;
+
+  ._contentEditable_utjas_351 {
+    padding: 0;
+  }
+}
