@@ -17,7 +17,18 @@ const Container: Components["List"] = React.forwardRef((props, ref) => {
   return <div {...props} ref={ref} className="flex w-full flex-col gap-2" />;
 });
 
-const EmptyPlaceholder: Components["EmptyPlaceholder"] = () => {
+const EmptyPlaceholder: Components["EmptyPlaceholder"] = (props) => {
+  const { isFetchingNextPage, isLoading, refreshing } = props?.context as {
+    isFetchingNextPage: boolean;
+    isLoading: boolean;
+    items: unknown[];
+    refreshing: boolean;
+  };
+
+  if (isFetchingNextPage || isLoading || refreshing) {
+    return null;
+  }
+
   return <EmptyList />;
 };
 
