@@ -24,7 +24,7 @@ const GameCard = ({ node }: { node: Game }) => {
               {players.map((player) => (
                 <Avatar
                   alt={player.character.name}
-                  imageSrc={player.character.image_url ?? undefined}
+                  imageSrc={player.character.class?.image_url ?? undefined}
                 />
               ))}
             </div>

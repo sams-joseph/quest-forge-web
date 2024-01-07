@@ -6,7 +6,6 @@ const useUpdateGame = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["updateGame", id],
     mutationFn: async (data: { description?: string; name?: string }) => {
       const res = await axios.put<Game>(`/api/games/${id}`, data, {
         headers: {

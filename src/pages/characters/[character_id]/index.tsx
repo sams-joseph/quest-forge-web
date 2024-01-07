@@ -1,13 +1,13 @@
 import React, { type ReactElement } from "react";
 import MainLayout from "@/components/MainLayout";
-import CharacterObject from "@/components/CharacterObject";
 import Icon from "@/ui/Icon";
 import useFetchCharacter from "@/hooks/useFetchCharacter";
 import { useRouter } from "next/router";
+import { Layout } from "@/components/CharacterObject";
 
 const Character = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { character_id: id } = router.query;
 
   const { data, isLoading } = useFetchCharacter(id as string);
 
@@ -28,11 +28,15 @@ const Character = () => {
     );
   }
 
-  return <CharacterObject displayType="DETAILS" node={data} />;
+  return <div>Character</div>;
 };
 
 Character.getLayout = function getLayout(page: ReactElement) {
-  return <MainLayout>{page}</MainLayout>;
+  return (
+    <MainLayout>
+      <Layout>{page}</Layout>
+    </MainLayout>
+  );
 };
 
 export default Character;

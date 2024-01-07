@@ -11,6 +11,27 @@ export interface Spell {
   id: string;
   name: string;
   description?: string;
+  image_url?: string;
+  school: MagicSchool;
+  damage_type: DamageType;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MagicSchool {
+  id: string;
+  name: string;
+  description?: string;
+  image_url?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DamageType {
+  id: string;
+  name: string;
+  description?: string;
+  image_url?: string;
   created_at: string;
   updated_at: string;
 }

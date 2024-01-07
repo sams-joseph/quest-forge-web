@@ -16,12 +16,17 @@ export interface Class {
   updated_at: string;
 }
 
-const useFetchClasses = () => {
+const useFetchClasses = (query = {}) => {
   return useInfiniteScroll({
-    queryKey: ["fetchClasses"],
+    queryKey: ["fetchClasses", query],
     queryFn: async ({ pageParam = 1 }) => {
+      const params = new URLSearchParams({
+        ...query,
+        page: pageParam.toString(),
+      }).toString();
+
       const res = await axios.get<ClassWithPagination>(
-        `/api/classes?page=${pageParam ? pageParam : ""}`,
+        `/api/classes?${params}}`,
         {
           headers: {
             "Content-Type": "application/json",

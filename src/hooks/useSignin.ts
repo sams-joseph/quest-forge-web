@@ -23,7 +23,6 @@ const signIn = async (data: { email: string; password: string }) => {
 
 const useSignin = () => {
   return useMutation({
-    mutationKey: ["signIn"],
     mutationFn: signIn,
   });
 };

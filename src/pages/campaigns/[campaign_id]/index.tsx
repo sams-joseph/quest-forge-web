@@ -14,10 +14,10 @@ const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
 const Game = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { campaign_id } = router.query;
 
-  const { data, isLoading } = useFetchGame(id as string);
-  const updateGame = useUpdateGame(id as string);
+  const { data, isLoading } = useFetchGame(campaign_id as string);
+  const updateGame = useUpdateGame(campaign_id as string);
 
   const handleUpdate = debounce(async (description: string) => {
     await toast.promise(updateGame.mutateAsync({ description }), {

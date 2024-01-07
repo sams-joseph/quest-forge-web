@@ -8,7 +8,7 @@ import {
   ChevronRightIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
-import { ChangeHandler } from "react-hook-form";
+import type { ChangeHandler } from "react-hook-form";
 
 export type SelectVariantProps = VariantProps<typeof selectVariants>;
 export const selectVariants = cva("select", {

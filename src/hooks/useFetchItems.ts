@@ -13,6 +13,15 @@ export interface Item {
   description?: string;
   image_url?: string;
   rarity: string;
+  category: EquipmentCategory;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EquipmentCategory {
+  id: string;
+  name: string;
+  image_url?: string;
   created_at: string;
   updated_at: string;
 }
@@ -26,12 +35,15 @@ const useFetchItems = (query = {}) => {
         page: pageParam.toString(),
       }).toString();
 
-      const res = await axios.get<ItemWithPagination>(`/api/items?${params}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accepts: "application/json",
+      const res = await axios.get<ItemWithPagination>(
+        `/api/equipment?${params}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accepts: "application/json",
+          },
         },
-      });
+      );
 
       return res.data;
     },

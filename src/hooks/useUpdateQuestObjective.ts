@@ -6,7 +6,6 @@ const useUpdateQuestObjective = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["updateQuestObjective", id],
     mutationFn: async (data: {
       description?: string;
       name?: string;

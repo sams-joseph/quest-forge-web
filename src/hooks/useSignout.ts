@@ -7,7 +7,6 @@ const signOut = async () => {
 
 const useSignOut = () => {
   return useMutation({
-    mutationKey: ["signOut"],
     mutationFn: signOut,
   });
 };

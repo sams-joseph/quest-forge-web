@@ -6,7 +6,6 @@ const useUpdateQuest = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["updateQuest", id],
     mutationFn: async (data: { description?: string; name?: string }) => {
       const res = await axios.put<Quest>(`/api/quests/${id}`, data, {
         headers: {

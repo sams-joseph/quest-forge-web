@@ -34,7 +34,7 @@ const EditableTypography = ({
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setState(newValue);
-    if (_handleChange) {
+    if (_handleChange && newValue !== initialValue) {
       void _handleChange(newValue);
     }
   };

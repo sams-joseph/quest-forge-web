@@ -9,16 +9,14 @@ import toast from "react-hot-toast";
 
 const ActionMenu = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { campaign_id } = router.query;
 
-  const createGameQuest = useCreateGameQuest(id as string);
+  const createGameQuest = useCreateGameQuest(campaign_id as string);
 
   const handleCreateQuest = async () => {
-    const response = await createGameQuest.mutateAsync({
+    await createGameQuest.mutateAsync({
       name: "New Adventure",
     });
-
-    void router.push(`/quests/${response.id}`);
   };
 
   const handleCreate = async () => {
@@ -43,13 +41,8 @@ const ActionMenu = () => {
         </>
       }
     >
-      <Button
-        size="medium"
-        rounded="md"
-        iconName="Plus"
-        endIconName="ChevronDown"
-      >
-        New Object
+      <Button size="medium" rounded="md" endIconName="ChevronDown">
+        Actions
       </Button>
     </DropdownMenu>
   );

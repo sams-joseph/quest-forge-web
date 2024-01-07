@@ -5,9 +5,14 @@ import Image from "next/image";
 import useFetchClasses, { type Class } from "@/hooks/useFetchClasses";
 import ClassObject from "@/components/ClassObject";
 import InfiniteList from "@/components/InfiniteList";
+import Input from "@/ui/Input";
+import useDebouncedSearch from "@/hooks/useDebouncedSearch";
 
 const Classes = () => {
-  const { data, isError, getInfiniteProps } = useFetchClasses();
+  const { inputProps, debouncedValue } = useDebouncedSearch();
+  const { data, isError, getInfiniteProps } = useFetchClasses({
+    name: debouncedValue,
+  });
 
   const edges: Class[] = useMemo(() => {
     if (data?.pages) {
@@ -41,6 +46,12 @@ const Classes = () => {
           />
           <Typography variant="headline">Classes</Typography>
         </div>
+        <Input
+          name="search"
+          placeholder="Search"
+          {...inputProps()}
+          rounded="md"
+        />
       </div>
       <InfiniteList
         items={edges}

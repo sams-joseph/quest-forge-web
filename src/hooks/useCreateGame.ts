@@ -28,7 +28,6 @@ const useCreateGame = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createGame"],
     mutationFn: async (data: CreateGameParams) => {
       const res = await axios.post<Game>(
         `/api/games`,

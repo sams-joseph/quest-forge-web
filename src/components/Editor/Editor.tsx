@@ -15,10 +15,6 @@ import "@mdxeditor/editor/style.css";
 
 const Editor = forwardRef<MDXEditorMethods, MDXEditorProps>((props, ref) => {
   const plugins = useMemo(() => {
-    if (props?.readOnly) {
-      return [];
-    }
-
     return [
       headingsPlugin(),
       markdownShortcutPlugin(),

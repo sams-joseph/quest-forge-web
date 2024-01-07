@@ -16,15 +16,16 @@ const Players = ({
   links?: InviteLink[];
 }) => {
   const router = useRouter();
-  const { id } = router.query;
+  const { campaign_id } = router.query;
 
-  const createLink = useCreatInviteLink(id as string);
+  const createLink = useCreatInviteLink(campaign_id as string);
 
   return (
     <div className="relative flex flex-col gap-4">
       {links?.map((link: InviteLink) => {
         return (
           <Button
+            key={link.id}
             classes="w-full"
             size="medium"
             rounded="md"

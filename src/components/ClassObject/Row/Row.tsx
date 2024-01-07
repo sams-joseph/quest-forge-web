@@ -2,15 +2,13 @@ import React from "react";
 import StandardRow from "@/ui/StandardRow";
 import { type Class } from "@/hooks/useFetchClasses";
 import Image from "next/image";
-import Editor from "@/components/Editor";
 
 const QuestRow = ({ node }: { node: Class; refetch: () => void }) => {
-  const { name, image_url, description } = node;
+  const { name, image_url } = node;
 
   return (
     <StandardRow
       title={name}
-      text={<Editor markdown={description ?? ""} />}
       media={
         <Image
           src={image_url ?? "/images/placeholder.png"}

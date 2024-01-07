@@ -36,6 +36,7 @@ const useInfiniteScroll = ({
     queryKey: [queryKey],
     queryFn,
     getNextPageParam: (lastPage: InfinitePageResponse) => {
+      console.log(lastPage);
       if (lastPage?.to % lastPage?.per_page === 0) {
         return lastPage?.to / lastPage?.per_page + 1;
       }

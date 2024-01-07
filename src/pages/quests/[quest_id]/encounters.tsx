@@ -9,9 +9,11 @@ import EncounterObject from "@/components/EncounterObject";
 
 const Encounters = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { quest_id } = router.query;
 
-  const { data, isError, getInfiniteProps } = useFetchEncounters(id as string);
+  const { data, isError, getInfiniteProps } = useFetchEncounters(
+    quest_id as string,
+  );
 
   const edges: Encounter[] = useMemo(() => {
     if (data?.pages) {

@@ -21,7 +21,6 @@ const useCreateEncounter = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createEncounter"],
     mutationFn: async (data: CreateEncounterParams) => {
       const res = await axios.post<Encounter>(
         `/api/quests/${id}/encounters`,

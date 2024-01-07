@@ -1,15 +1,14 @@
 import React from "react";
 import StandardRow from "@/ui/StandardRow";
 import { type Race } from "@/hooks/useFetchRaces";
-import Editor from "@/components/Editor";
 
 const RaceRow = ({ node }: { node: Race; refetch: () => void }) => {
-  const { name, description } = node;
+  const { name } = node;
 
   return (
     <StandardRow
       title={name}
-      text={<Editor markdown={description ?? ""} />}
+      // text={<Editor markdown={description ?? ""} />}
       // media={
       //   <Image
       //     src={image_url ?? "/images/placeholder.png"}

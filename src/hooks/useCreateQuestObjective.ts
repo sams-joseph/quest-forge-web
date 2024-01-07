@@ -25,7 +25,6 @@ const useCreateQuestObjective = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createGameObjective"],
     mutationFn: async (data: CreateQuestObjectiveParams) => {
       const res = await axios.post<QuestObjective>(
         `/api/quests/${id}/objectives`,

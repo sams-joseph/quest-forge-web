@@ -1,5 +1,6 @@
 import axios from "@/lib/axios";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
+import { type Monster } from "@/hooks/useFetchMonsters";
 
 export interface EncounterWithPagination {
   to: number;
@@ -11,6 +12,8 @@ export interface Encounter {
   id: string;
   name: string;
   description: string;
+  total_xp: number;
+  monsters: Monster[];
   created_at: string;
   updated_at: string;
 }

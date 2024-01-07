@@ -13,7 +13,6 @@ const useCreateCharacter = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createCharacter"],
     mutationFn: async (data: CreateCharacterParams) => {
       const res = await axios.post<Character>(`/api/characters`, data, {
         headers: {

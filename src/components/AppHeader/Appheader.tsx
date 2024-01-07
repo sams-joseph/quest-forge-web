@@ -8,10 +8,13 @@ import { cx } from "class-variance-authority";
 import useCreateGame from "@/hooks/useCreateGame";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import JoinCampaignModal from "../JoinCampaignModal";
+import useToggle from "@/hooks/useToggle";
 
 const Appheader = () => {
   const router = useRouter();
   const createGame = useCreateGame();
+  const joinToggle = useToggle();
 
   const handleCreateGame = async () => {
     const response = await createGame.mutateAsync({
@@ -24,6 +27,7 @@ const Appheader = () => {
   return (
     <div className="flex items-center gap-2 px-4 py-2">
       <div className="flex items-center gap-2">
+        {/* <div className="h-[40px] w-[40px] rounded-full bg-primary-500"></div> */}
         <Image
           src={`${process.env.NEXT_PUBLIC_S3_URL}/assets/quest-forge-mark.png`}
           alt="Quest Forge"
@@ -87,7 +91,7 @@ const Appheader = () => {
                     Start a new adventure
                   </Typography>
                 </ListItem>
-                <ListItem title="Join" href="/campaigns/join">
+                <ListItem title="Join" href="" onClick={joinToggle.toggleOn}>
                   <Typography variant="caption" color="muted">
                     Join an existing adventure
                   </Typography>
@@ -111,9 +115,9 @@ const Appheader = () => {
                     View a list of all your spells
                   </Typography>
                 </ListItem>
-                <ListItem title="Items" href="/items">
+                <ListItem title="Equipment" href="/items">
                   <Typography variant="caption" color="muted">
-                    View a list of all your items
+                    View a list of all your equipment
                   </Typography>
                 </ListItem>
                 <ListItem title="Classes" href="/classes">
@@ -124,6 +128,11 @@ const Appheader = () => {
                 <ListItem title="Races" href="/races">
                   <Typography variant="caption" color="muted">
                     View a list of all races
+                  </Typography>
+                </ListItem>
+                <ListItem title="Monsters" href="/monsters">
+                  <Typography variant="caption" color="muted">
+                    View a list of all monsters
                   </Typography>
                 </ListItem>
                 <ListItem title="Characters" href="/characters">
@@ -150,6 +159,7 @@ const Appheader = () => {
         </div>
       </NavigationMenu.Root>
       <UserMenu />
+      <JoinCampaignModal toggle={joinToggle} />
     </div>
   );
 };

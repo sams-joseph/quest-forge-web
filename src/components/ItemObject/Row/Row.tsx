@@ -15,7 +15,11 @@ const RARITY_COLOR_MAP: Record<string, string> = {
 };
 
 const ItemRow = ({ node }: { node: Item; refetch: () => void }) => {
-  const { name, image_url, rarity } = node;
+  const {
+    name,
+    rarity,
+    category: { image_url },
+  } = node;
 
   const rarityClass = cx(["border-2 rounded-md", RARITY_COLOR_MAP[rarity]]);
 

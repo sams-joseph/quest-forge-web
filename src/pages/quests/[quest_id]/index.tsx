@@ -13,10 +13,10 @@ const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
 const Quest = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { quest_id } = router.query;
 
-  const { data, isLoading, isError } = useFetchQuest(id as string);
-  const updateQuest = useUpdateQuest(id as string);
+  const { data, isLoading, isError } = useFetchQuest(quest_id as string);
+  const updateQuest = useUpdateQuest(quest_id as string);
 
   const handleUpdate = debounce(async (description: string) => {
     await updateQuest.mutateAsync({ description });

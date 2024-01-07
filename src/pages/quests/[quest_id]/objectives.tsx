@@ -1,21 +1,25 @@
 import React, { useMemo, type ReactElement } from "react";
 import MainLayout from "@/components/MainLayout";
 import { useRouter } from "next/router";
-import { Layout } from "@/components/GameObject";
+import { Layout } from "@/components/QuestObject";
 import Typography from "@/ui/Typography";
 import InfiniteList from "@/components/InfiniteList";
-import QuestObject from "@/components/QuestObject";
-import useFetchGameQuests, { type Quest } from "@/hooks/useFetchGameQuests";
+import QuestObjectiveObject from "@/components/QuestObjectiveObject";
+import useFetchQuestObjectives, {
+  type QuestObjective,
+} from "@/hooks/useFetchQuestObjectives";
 
-const Adventures = () => {
+const Objectives = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { quest_id } = router.query;
 
-  const { data, isError, getInfiniteProps } = useFetchGameQuests(id as string);
+  const { data, isError, getInfiniteProps, refetch } = useFetchQuestObjectives(
+    quest_id as string,
+  );
 
-  const edges: Quest[] = useMemo(() => {
+  const edges: QuestObjective[] = useMemo(() => {
     if (data?.pages) {
-      return data.pages.flatMap((page) => page.data as Quest[]);
+      return data.pages.flatMap((page) => page.data as QuestObjective[]);
     }
 
     return [];
@@ -26,7 +30,14 @@ const Adventures = () => {
 
     const node = edges[index];
 
-    return <QuestObject key={node?.id} displayType="ROW" node={node} />;
+    return (
+      <QuestObjectiveObject
+        key={node?.id}
+        displayType="ROW"
+        node={node}
+        refetch={refetch}
+      />
+    );
   };
 
   if (isError) {
@@ -37,7 +48,7 @@ const Adventures = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <Typography variant="subtitle">Adventures</Typography>
+        <Typography variant="subtitle">Objectives</Typography>
       </div>
       <InfiniteList
         items={edges}
@@ -48,7 +59,7 @@ const Adventures = () => {
   );
 };
 
-Adventures.getLayout = function getLayout(page: ReactElement) {
+Objectives.getLayout = function getLayout(page: ReactElement) {
   return (
     <MainLayout>
       <Layout>{page}</Layout>
@@ -56,4 +67,4 @@ Adventures.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-export default Adventures;
+export default Objectives;

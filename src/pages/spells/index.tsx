@@ -2,11 +2,11 @@ import React, { useMemo, type ReactElement } from "react";
 import MainLayout from "@/components/MainLayout";
 import Typography from "@/ui/Typography";
 import Image from "next/image";
-import ClassObject from "@/components/ClassObject";
-import InfiniteList from "@/components/InfiniteList";
+import SpellObject from "@/components/SpellObject";
 import useFetchSpells, { type Spell } from "@/hooks/useFetchSpells";
 import Input from "@/ui/Input";
 import useDebouncedSearch from "@/hooks/useDebouncedSearch";
+import InfiniteGrid from "@/components/InfiniteGrid";
 
 const Spells = () => {
   const { inputProps, debouncedValue } = useDebouncedSearch();
@@ -27,7 +27,7 @@ const Spells = () => {
 
     const node = edges[index];
 
-    return <ClassObject key={node?.id} displayType="ROW" node={node} />;
+    return <SpellObject key={node?.id} displayType="CARD" node={node} />;
   };
 
   if (isError) {
@@ -53,7 +53,7 @@ const Spells = () => {
           rounded="md"
         />
       </div>
-      <InfiniteList
+      <InfiniteGrid
         items={edges}
         renderComponent={renderComponent}
         {...getInfiniteProps()}

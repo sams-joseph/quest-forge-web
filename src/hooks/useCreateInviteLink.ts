@@ -13,7 +13,6 @@ const useCreatInviteLink = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createInviteLink", id],
     mutationFn: async () => {
       const res = await axios.post<InviteLink>(
         `/api/game-invitations/create`,

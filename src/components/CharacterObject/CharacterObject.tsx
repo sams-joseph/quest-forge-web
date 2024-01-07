@@ -1,16 +1,14 @@
 import React from "react";
 import Card from "./Card";
 import Row from "./Row";
-import Details from "./Details";
 
 const DISPLAY_MAP: Record<string, React.ElementType> = {
   CARD: Card,
   ROW: Row,
-  DETAILS: Details,
 };
 
 interface CharacterObjectProps {
-  displayType: "CARD" | "ROW" | "DETAILS";
+  displayType: "CARD" | "ROW";
   node: unknown;
 }
 

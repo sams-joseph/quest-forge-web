@@ -7,13 +7,29 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import useCreateQuestObjective from "@/hooks/useCreateQuestObjective";
 import useCreateEncounter from "@/hooks/useCreateEncounter";
+import useCreateQuestSubquest from "@/hooks/useCreateQuestSubquest";
 
 const ActionMenu = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { quest_id } = router.query;
 
-  const createQuestObjective = useCreateQuestObjective(id as string);
-  const createEncounter = useCreateEncounter(id as string);
+  const createQuestObjective = useCreateQuestObjective(quest_id as string);
+  const createEncounter = useCreateEncounter(quest_id as string);
+  const createSubquest = useCreateQuestSubquest(quest_id as string);
+
+  const handleCreateQuest = async () => {
+    await createSubquest.mutateAsync({
+      name: "New Quest",
+    });
+  };
+
+  const handleCreate = async () => {
+    await toast.promise(handleCreateQuest(), {
+      loading: "Creating quest...",
+      success: "Created quest",
+      error: "Error creating quest",
+    });
+  };
 
   const handleCreateObjective = async () => {
     await toast.promise(
@@ -59,16 +75,18 @@ const ActionMenu = () => {
             <Icon iconName="Plus" />
             <Typography variant="subtitle2">Encounter</Typography>
           </DropdownMenu.Item>
+          <DropdownMenu.Item
+            onSelect={handleCreate}
+            className="group relative flex cursor-pointer select-none items-center gap-2 rounded-md px-2 py-1 leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-black-800"
+          >
+            <Icon iconName="Plus" />
+            <Typography variant="subtitle2">Quest</Typography>
+          </DropdownMenu.Item>
         </>
       }
     >
-      <Button
-        size="medium"
-        rounded="md"
-        iconName="Plus"
-        endIconName="ChevronDown"
-      >
-        New Object
+      <Button size="medium" rounded="md" endIconName="ChevronDown">
+        Actions
       </Button>
     </DropdownMenu>
   );

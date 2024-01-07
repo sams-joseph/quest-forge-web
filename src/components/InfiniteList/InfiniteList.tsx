@@ -11,6 +11,7 @@ interface InfiniteProps {
   isLoading?: boolean;
   hasNextPage?: boolean;
   refreshing?: boolean;
+  defaultScrollParent?: boolean;
 }
 
 const Container: Components["List"] = React.forwardRef((props, ref) => {
@@ -59,6 +60,7 @@ const InfiniteList = ({
   isLoading,
   hasNextPage,
   refreshing,
+  defaultScrollParent = false,
 }: InfiniteProps) => {
   const scrollParentRef = useRef<HTMLElement | undefined>();
 
@@ -83,7 +85,9 @@ const InfiniteList = ({
 
   return (
     <Virtuoso
-      customScrollParent={scrollParentRef.current}
+      customScrollParent={
+        defaultScrollParent ? undefined : scrollParentRef.current
+      }
       components={{
         List: Container,
         EmptyPlaceholder,

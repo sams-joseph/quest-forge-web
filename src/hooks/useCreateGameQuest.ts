@@ -21,7 +21,6 @@ const useCreateGameQuest = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["createGameQuest"],
     mutationFn: async (data: CreateGameQuestParams) => {
       const res = await axios.post<Quest>(
         `/api/games/${id}/quests`,

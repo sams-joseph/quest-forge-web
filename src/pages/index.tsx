@@ -9,7 +9,7 @@ const Home = () => {
   const { user } = useAuth({ middleware: "auth" });
 
   return (
-    <div className="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid w-full">
       <Pane>
         <div className="flex flex-col items-start gap-4 p-4">
           <div>
@@ -25,8 +25,6 @@ const Home = () => {
           </Button>
         </div>
       </Pane>
-      <div className="col-span-2">{/* <Pane>test</Pane> */}</div>
-      <div className="col-span-1">{/* <Pane>test</Pane> */}</div>
     </div>
   );
 };
