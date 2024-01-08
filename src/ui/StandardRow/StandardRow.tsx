@@ -12,6 +12,7 @@ interface StandardRowProps {
   editable?: boolean;
   to?: string;
   onChange?: (value: string) => void | undefined;
+  onClick?: () => void;
 }
 
 const Wrapper = ({
@@ -36,17 +37,20 @@ const StandardRow = ({
   editable,
   onChange,
   to,
+  onClick,
+  ...rest
 }: StandardRowProps) => {
   const wrapper = cx([
     "flex gap-4 overflow-hidden rounded-md bg-black-900 p-4 hover:bg-black-800",
     text ? "items-start" : "items-center",
+    onClick ? "cursor-pointer" : "",
   ]);
   return (
     <Wrapper to={to}>
-      <div className={wrapper}>
+      <div className={wrapper} onClick={onClick} {...rest}>
         {media}
         <div className="flex-1">
-          <div className="flex-1">
+          <div className="w-full">
             {editable ? (
               <EditableTypography
                 initialValue={title ?? ""}

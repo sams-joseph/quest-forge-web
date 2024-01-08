@@ -61,18 +61,13 @@ const Appheader = () => {
                   <NavigationMenu.Link asChild>
                     <Link
                       className="relative flex h-full w-full select-none flex-col
-                    justify-end overflow-hidden rounded-[6px] bg-gradient-to-b from-primary-500 to-black-800 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-primary-500"
+                    justify-end overflow-hidden rounded-[6px] p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-primary-500"
                       href="/campaigns"
+                      style={{
+                        background: `url(${process.env.NEXT_PUBLIC_S3_URL}/assets/underground-ruins.jpg) no-repeat center center / cover`,
+                      }}
                     >
-                      <div className="absolute bottom-0 left-0 right-0 top-0">
-                        <Image
-                          src={`${process.env.NEXT_PUBLIC_S3_URL}/assets/underground-ruins.jpg`}
-                          layout="fill"
-                          objectFit="cover"
-                          alt="campaigns"
-                        />
-                      </div>
-                      <div className="z-10">
+                      <div className="">
                         <Typography variant="headline">Campaigns</Typography>
                         <Typography variant="body1">
                           The abandoned Mage Tower awaits

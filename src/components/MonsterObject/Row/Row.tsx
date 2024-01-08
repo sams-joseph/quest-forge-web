@@ -4,8 +4,15 @@ import { type Monster } from "@/hooks/useFetchMonsters";
 // import Image from "next/image";
 import Progress from "@/ui/Progress";
 
-const SpellRow = ({ node }: { node: Monster; refetch: () => void }) => {
-  const { name, challenge_rating, hit_points, pivot } = node;
+const SpellRow = ({
+  node,
+  ...rest
+}: {
+  node: Monster;
+  refetch: () => void;
+  onClick?: () => void;
+}) => {
+  const { name, challenge_rating, hit_points, pivot, armor_class } = node;
 
   return (
     <StandardRow
@@ -26,7 +33,8 @@ const SpellRow = ({ node }: { node: Monster; refetch: () => void }) => {
           </div>
         ) : null
       }
-      metadata={`Challenge rating: ${challenge_rating}`}
+      metadata={`CR: ${challenge_rating} \u2022 HP: ${hit_points} \u2022 AC: ${armor_class?.[0]?.value}`}
+      {...rest}
     />
   );
 };

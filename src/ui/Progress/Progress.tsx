@@ -11,8 +11,6 @@ const ProgressDemo = ({ value, max }: { value?: number; max: number }) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const color = scale(percentage / 100).hex();
 
-  console.log(color);
-
   return (
     <RadixProgress.Root
       className="relative h-1 w-full overflow-hidden rounded-sm bg-black-950"

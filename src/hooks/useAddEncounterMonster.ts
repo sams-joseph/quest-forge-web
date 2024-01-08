@@ -25,6 +25,9 @@ const useAddEncounterMonster = (id: string) => {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["fetchEncounter", id] });
+      void queryClient.invalidateQueries({
+        queryKey: ["fetchEncounterMonsters", id],
+      });
     },
   });
 };

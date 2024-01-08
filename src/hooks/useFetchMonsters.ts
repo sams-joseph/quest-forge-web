@@ -17,6 +17,24 @@ export interface Monster {
   pivot?: {
     hit_points: number;
   };
+  armor_class?: {
+    value: number;
+  }[];
+  size: string;
+  type: string;
+  alignment: string;
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
+  proficiency_bonus: number;
+  speed: {
+    walk?: string;
+    fly?: string;
+    swim?: string;
+  };
   created_at: string;
   updated_at: string;
 }

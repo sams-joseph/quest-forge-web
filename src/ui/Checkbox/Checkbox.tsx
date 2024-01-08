@@ -10,28 +10,26 @@ interface ICheckboxProps {
 }
 
 const Checkbox = ({ id, label, checked, onChange }: ICheckboxProps) => (
-  <form>
-    <div className="flex w-full items-center gap-2">
-      <RadixCheckbox.Root
-        className="flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] border border-slate-500 bg-black-800 hover:bg-black-900"
-        id={id}
-        checked={checked}
-        onCheckedChange={onChange}
+  <div className="flex items-center gap-4">
+    <RadixCheckbox.Root
+      className="flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] border border-slate-500 bg-black-800 hover:bg-black-900"
+      id={id}
+      checked={checked}
+      onCheckedChange={onChange}
+    >
+      <RadixCheckbox.Indicator>
+        <Icon iconName="Check" />
+      </RadixCheckbox.Indicator>
+    </RadixCheckbox.Root>
+    {label && (
+      <label
+        className="w-full cursor-pointer text-[15px] leading-none"
+        htmlFor={id}
       >
-        <RadixCheckbox.Indicator>
-          <Icon iconName="Check" />
-        </RadixCheckbox.Indicator>
-      </RadixCheckbox.Root>
-      {label && (
-        <label
-          className="w-full pl-[15px] text-[15px] leading-none"
-          htmlFor={id}
-        >
-          {label}
-        </label>
-      )}
-    </div>
-  </form>
+        {label}
+      </label>
+    )}
+  </div>
 );
 
 export default Checkbox;

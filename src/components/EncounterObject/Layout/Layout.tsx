@@ -52,6 +52,9 @@ const Layout = ({ children }: { children: ReactElement }) => {
           <NavLink to={`/encounters/${encounter_id as string}`}>
             Overview
           </NavLink>
+          <NavLink to={`/encounters/${encounter_id as string}/monsters`}>
+            Monsters
+          </NavLink>
         </div>
         <ActionMenu />
       </div>

@@ -1,11 +1,16 @@
 import React, { type ReactElement } from "react";
+import dynamic from "next/dynamic";
 import MainLayout from "@/components/MainLayout";
 import { useRouter } from "next/router";
 import Icon from "@/ui/Icon";
 import Typography from "@/ui/Typography";
 import useFetchEncounter from "@/hooks/useFetchEncounter";
 import { Layout } from "@/components/EncounterObject";
-import MonsterObject from "@/components/MonsterObject";
+import useUpdateEncounter from "@/hooks/useUpdateEncounter";
+import debounce from "just-debounce-it";
+import toast from "react-hot-toast";
+
+const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
 const Encounter = () => {
   const router = useRouter();
@@ -14,6 +19,15 @@ const Encounter = () => {
   const { data, isLoading, isError } = useFetchEncounter(
     encounter_id as string,
   );
+  const updateEncounter = useUpdateEncounter(encounter_id as string);
+
+  const handleUpdate = debounce(async (description: string) => {
+    await toast.promise(updateEncounter.mutateAsync({ description }), {
+      loading: "Updating...",
+      success: "Updated",
+      error: "Error updating",
+    });
+  }, 2000);
 
   if (isLoading) {
     return (
@@ -30,17 +44,14 @@ const Encounter = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <Typography variant="subtitle">Monsters</Typography>
+        <Typography variant="subtitle">Overview</Typography>
       </div>
       <div className="flex flex-col gap-2">
-        {/* <Editor
+        <Editor
           markdown={data?.description ?? ""}
           onChange={handleUpdate}
           placeholder="Tell us about what the party has in store"
-        /> */}
-        {(data?.monsters ?? []).map((monster) => (
-          <MonsterObject key={monster.id} node={monster} displayType="ROW" />
-        ))}
+        />
       </div>
     </div>
   );

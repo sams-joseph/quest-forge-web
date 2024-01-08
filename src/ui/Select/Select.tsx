@@ -110,7 +110,7 @@ const Select = ({
         </RadixSelect.Icon>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
-        <RadixSelect.Content className="overflow-hidden rounded-md border border-black-900 bg-black-950 shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
+        <RadixSelect.Content className="z-10 overflow-hidden rounded-md border border-black-900 bg-black-950 shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
           <RadixSelect.ScrollUpButton className="flex h-[25px] cursor-default items-center justify-center bg-black-950 text-white">
             <ChevronUpIcon />
           </RadixSelect.ScrollUpButton>
