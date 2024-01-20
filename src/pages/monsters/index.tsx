@@ -1,4 +1,4 @@
-import React, { useMemo, type ReactElement } from "react";
+import React, { useMemo, type ReactElement, useState } from "react";
 import MainLayout from "@/components/MainLayout";
 import Typography from "@/ui/Typography";
 import Image from "next/image";
@@ -14,6 +14,10 @@ const Monsters = () => {
     name: debouncedValue,
   });
 
+  const [selectedMonster, setSelectedMonster] = useState<
+    Monster | null | undefined
+  >();
+
   const edges: Monster[] = useMemo(() => {
     if (data?.pages) {
       return data.pages.flatMap((page) => page.data as Monster[]);
@@ -27,7 +31,14 @@ const Monsters = () => {
 
     const node = edges[index];
 
-    return <MonsterObject key={node?.id} displayType="ROW" node={node} />;
+    return (
+      <MonsterObject
+        key={node?.id}
+        displayType="ROW"
+        node={node}
+        onClick={() => setSelectedMonster(node)}
+      />
+    );
   };
 
   if (isError) {
@@ -57,6 +68,11 @@ const Monsters = () => {
         items={edges}
         renderComponent={renderComponent}
         {...getInfiniteProps()}
+      />
+      <MonsterObject
+        displayType="DRAWER"
+        node={selectedMonster}
+        onClose={() => setSelectedMonster(null)}
       />
     </div>
   );

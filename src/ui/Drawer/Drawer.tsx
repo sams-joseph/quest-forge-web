@@ -21,19 +21,23 @@ const Drawer = React.forwardRef<HTMLDivElement, IDrawerProps>(
             className="fixed bottom-0 right-0 top-0 z-10 w-full md:max-w-md lg:max-w-xl"
           >
             <div className="h-screen rounded-none border-l border-black-800 bg-black-900 shadow-xl shadow-black-950">
-              <div className="flex flex-col gap-2 p-4">
-                <div className="flex items-center justify-between">
-                  <Dialog.Title className="text-xl">{title}</Dialog.Title>
-                  <Dialog.Close asChild>
-                    <IconButton iconName="Close" elevation="md" />
-                  </Dialog.Close>
+              <div className="flex h-screen flex-col">
+                <div className="flex flex-col gap-2 border-b border-black-950 p-4">
+                  <div className="flex items-center justify-between">
+                    <Dialog.Title className="text-xl">{title}</Dialog.Title>
+                    <Dialog.Close asChild>
+                      <IconButton iconName="Close" elevation="md" />
+                    </Dialog.Close>
+                  </div>
+                  <div>
+                    {description && (
+                      <Dialog.Description className="text-md text-black-200">
+                        {description}
+                      </Dialog.Description>
+                    )}
+                  </div>
                 </div>
-                {description && (
-                  <Dialog.Description className="text-md border-b border-black-950 pb-4 text-black-200">
-                    {description}
-                  </Dialog.Description>
-                )}
-                {children}
+                <div className="flex-1 overflow-scroll p-4">{children}</div>
               </div>
             </div>
           </Dialog.Content>
